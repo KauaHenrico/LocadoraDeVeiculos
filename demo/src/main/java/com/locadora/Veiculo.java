@@ -2,6 +2,11 @@ package com.locadora;
 public class Veiculo {
     private String nome;
     private int id;
+
+    public Veiculo(String nome, int id) {
+        this.nome = nome;
+        this.id = id;
+    }
     
     public String getNome() {
         return nome;

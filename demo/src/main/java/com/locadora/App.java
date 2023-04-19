@@ -6,16 +6,26 @@ public class App
 {
     public static void main( String[] args )
     {
-        Reader reader = new Reader();
+        Veiculo v1 = new Veiculo("Fusca", 1);
+        Veiculo v2 = new Veiculo("Gol", 2);
+        Veiculo v3 = new Veiculo("Celta", 3);
+        Veiculo v4 = new Veiculo("Palio", 4);
+
+        Lista lde = new LDE();
+        lde.insereInicio(v1);
+        lde.insereInicio(v2);
+        lde.insereInicio(v3);
+        lde.insereInicio(v4);
+
+
+        lde.imprime();
+
+        System.out.println("Tamanho: " + lde.tamanho());
+
+        lde.remove(v2);
+
         
-        String caminhoArquivo = "caminho/do/arquivo.csv";
-        String[][] dados = reader.lerArquivoCSV(caminhoArquivo);
-        
-        // Exemplo de impressão dos dados lidos do arquivo CSV
-        for (String[] linha : dados) {
-            for (String coluna : linha) {
-                System.out.print(coluna + " ");
-            }
-            System.out.println();}
+        System.out.println("Tamanho: " + lde.tamanho());
+        lde.imprime();
     }
 }
