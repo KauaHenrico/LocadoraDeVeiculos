@@ -1,5 +1,5 @@
 package com.locadora;
 
-public class locacao {
+public class Locacao {
     
 }

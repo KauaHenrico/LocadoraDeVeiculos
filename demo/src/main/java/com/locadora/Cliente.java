@@ -1,16 +1,30 @@
-package com.locadora;
-
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class Cliente {
-    
     private String nome;
-    private String cpf;
+    private String CNH;
     private String telefone;
-    private String cnh;
-    private ArrayList<locacao> locacoes = new ArrayList<>()
-
-    public boolean temlocacao(){
-        return !locacoes.isEmpyt
+    private String CPF;
+    private List<Locacao> locacoes = new ArrayList<>();
+    
+    // construtor e getters/setters omitidos
+    
+    public boolean temLocacao() {
+        return !locacoes.isEmpty();
+    }
+    
+    public void addLocacao(Locacao locacao) {
+        locacoes.add(locacao);
+    }
+    
+    public void removeLocacao(Locacao locacao) {
+        locacoes.remove(locacao);
+    }
+    
+    public List<Locacao> getLocacoes() {
+        return Collections.unmodifiableList(locacoes);
     }
 }
+
