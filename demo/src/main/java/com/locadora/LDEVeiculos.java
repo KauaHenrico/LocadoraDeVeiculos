@@ -1,9 +1,9 @@
 package com.locadora;
 
-public class LDE implements Lista{
+public class LDEVeiculos implements Lista{
     private NohVeiculos inicio;
     private NohVeiculos fim;
-    public LDE (){
+    public LDEVeiculos (){
     this.inicio = null;
     this.fim = null;
     }
@@ -89,10 +89,10 @@ public class LDE implements Lista{
         return false; // Retorna false se não encontrar o elemento
     }
 
-    public boolean remove(Object info){
+    public boolean remove(int id){
         NohVeiculos aux = inicio;
         while (aux != null) {
-            if (aux.getInfo().equals(info)) {
+            if (aux.getInfo().equals(id)) {
                 if (aux == inicio) {
                     inicio = inicio.getProx();
                     if (inicio != null) {

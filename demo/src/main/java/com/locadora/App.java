@@ -11,7 +11,7 @@ public class App
         Veiculo v3 = new Veiculo("Celta", 3);
         Veiculo v4 = new Veiculo("Palio", 4);
 
-        Lista lde = new LDE();
+        Lista lde = new LDEVeiculos();
         lde.insereInicio(v1);
         lde.insereInicio(v2);
         lde.insereInicio(v3);
@@ -22,7 +22,7 @@ public class App
 
         System.out.println("Tamanho: " + lde.tamanho());
 
-        lde.remove(v2);
+        lde.remove(2);
 
         
         System.out.println("Tamanho: " + lde.tamanho());
