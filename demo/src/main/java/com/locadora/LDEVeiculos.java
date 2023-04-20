@@ -68,6 +68,22 @@ public class LDEVeiculos implements Lista{
             if(aux.getInfo() instanceof Veiculo){
                 Veiculo a = (Veiculo) aux.getInfo();
                 System.out.println(a.getNome());
+                if(a.getAno() == 0){
+                    System.out.println("Ano não informado");}
+                else{
+                System.out.println(a.getAno());}
+                if(a.getMarca() == null){
+                    System.out.println("Marca não informada");}
+                else{
+
+                System.out.println(a.getMarca());
+               
+                }
+                if(a.getPlaca() == null){
+                    System.out.println("Placa não informada");}
+                else{
+                System.out.println(a.getPlaca());
+                }
             }
             aux = aux.getProx();
         }
