@@ -100,7 +100,22 @@ public class AppTest
             assertTrue(false);
         }
 
+
+        
     }
+
+
+    @Test(expected = IllegalArgumentException.class)
+    public void buscaVazio(){
+        Veiculo v1 = new Veiculo("Fusca", 1);
+        LDEVeiculos lde = new LDEVeiculos();
+        lde.insereInicio(v1);
+        lde.busca("");
+
+    }
+
+    
+        
 
   
 

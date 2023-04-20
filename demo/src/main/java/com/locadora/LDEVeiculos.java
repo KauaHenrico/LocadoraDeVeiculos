@@ -74,7 +74,11 @@ public class LDEVeiculos implements Lista{
     }
 
 
-     public boolean busca(Object nome){
+
+    public boolean busca(Object nome){
+        if (nome == null || nome.toString().trim().isEmpty()) {
+            throw new IllegalArgumentException("O nome do veículo não pode ser nulo ou vazio.");
+        }
         NohVeiculos aux = inicio;
         while(aux != null){
             if(aux.getInfo() instanceof Veiculo){
@@ -83,7 +87,6 @@ public class LDEVeiculos implements Lista{
                     return true;
                 }
             } 
-            
             aux = aux.getProx();
         }
         return false; // Retorna false se não encontrar o elemento
