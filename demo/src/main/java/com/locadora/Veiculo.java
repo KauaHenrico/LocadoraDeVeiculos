@@ -4,8 +4,17 @@ public class Veiculo {
     private int id;
 
     public Veiculo(String nome, int id) {
-        this.nome = nome;
-        this.id = id;
+        if (id < 0) {
+            throw new IllegalArgumentException("O ID do veículo não pode ser negativo.");
+        }else {
+            this.id = id;
+        }
+        if(nome == null || nome.trim().isEmpty()) {
+            throw new IllegalArgumentException("O nome do veículo não pode ser nulo ou vazio.");
+        }else {
+            this.nome = nome;
+        }
+     
     }
     
     public String getNome() {

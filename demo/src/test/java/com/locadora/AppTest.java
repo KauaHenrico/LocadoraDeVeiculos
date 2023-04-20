@@ -1,5 +1,6 @@
 package com.locadora;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
@@ -42,7 +43,7 @@ public class AppTest
         lde.insereInicio(v2);
         lde.insereInicio(v3);
         lde.remove(2);
-        assertTrue(lde.tamanho() == 2);
+        assertEquals(lde.tamanho(), 2);
     }
 
     @Test
@@ -58,6 +59,49 @@ public class AppTest
 
     }
 
-    
+    @Test
+    public void removeNegativo(){
+        Veiculo v1 = new Veiculo("Fusca", 1);
+        LDEVeiculos lde = new LDEVeiculos();
+        lde.insereInicio(v1);
+        if(lde.remove(-1) == false){
+            assertTrue(true);
+        } else {
+            assertTrue(false);
+        }
+
+    }
+
+
+    @Test(expected = IllegalArgumentException.class)
+    public void insereNegativo(){
+        Veiculo v1 = new Veiculo("Fusca", -1);
+        LDEVeiculos lde = new LDEVeiculos();
+        lde.insereInicio(v1);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void insereVazio(){
+        Veiculo v1 = new Veiculo("", 1);
+        LDEVeiculos lde = new LDEVeiculos();
+        lde.insereInicio(v1);
+      
+
+    }
+
+    @Test
+    public void removeVazio(){
+        Veiculo v1 = new Veiculo("", 1);
+        LDEVeiculos lde = new LDEVeiculos();
+        lde.insereInicio(v1);
+        if(lde.remove(1) == false){
+            assertTrue(true);
+        } else {
+            assertTrue(false);
+        }
+
+    }
+
+  
 
 }

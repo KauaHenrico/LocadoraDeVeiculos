@@ -92,25 +92,28 @@ public class LDEVeiculos implements Lista{
     public boolean remove(int id){
         NohVeiculos aux = inicio;
         while (aux != null) {
-            if (aux.getInfo().equals(id)) {
-                if (aux == inicio) {
-                    inicio = inicio.getProx();
-                    if (inicio != null) {
-                        inicio.setAnt(null);
+            if(aux.getInfo() instanceof Veiculo){
+                Veiculo a = (Veiculo) aux.getInfo();
+                if(a.getId() == id) {
+                    if (aux == inicio) {
+                        inicio = inicio.getProx();
+                        if (inicio != null) {
+                            inicio.setAnt(null);
+                        } else {
+                            fim = null;
+                        }
+                    } else if (aux == fim) {
+                        fim = fim.getAnt();
+                        fim.setProx(null);
                     } else {
-                        fim = null;
+                        aux.getAnt().setProx(aux.getProx());
+                        aux.getProx().setAnt(aux.getAnt());
                     }
-                } else if (aux == fim) {
-                    fim = fim.getAnt();
-                    fim.setProx(null);
-                } else {
-                    aux.getAnt().setProx(aux.getProx());
-                    aux.getProx().setAnt(aux.getAnt());
+                    return true; // retorna true se o elemento foi removido
                 }
-                return true; // retorna true se o elemento foi removido
             }
             aux = aux.getProx();
         }
-        return false; // retorna false se o elemento não foi encontrado
+        return false; // retorna false se o elemento não foi removido
     }
 }
