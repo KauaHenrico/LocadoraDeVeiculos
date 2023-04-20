@@ -89,16 +89,10 @@ public class AppTest
 
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void removeVazio(){
         Veiculo v1 = new Veiculo("", 1);
         LDEVeiculos lde = new LDEVeiculos();
-        lde.insereInicio(v1);
-        if(lde.remove(1) == false){
-            assertTrue(true);
-        } else {
-            assertTrue(false);
-        }
 
 
         
