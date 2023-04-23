@@ -51,6 +51,12 @@ public class LDEVeiculos implements Lista{
         
     }
   
+    /**
+     * This Java function returns the number of nodes in a linked list of vehicles.
+     * 
+     * @return The method `tamanho()` returns an integer value which represents the number of nodes in
+     * a linked list of vehicles.
+     */
     public int tamanho() { 
         int cont = 0;
         NohVeiculos aux = inicio;
@@ -62,6 +68,9 @@ public class LDEVeiculos implements Lista{
      }
 
 
+    /**
+     * This function prints information about vehicles stored in a linked list.
+     */
      public void imprime() {
         NohVeiculos aux = inicio;
         while (aux != null){
@@ -91,6 +100,15 @@ public class LDEVeiculos implements Lista{
 
 
 
+    /**
+     * This function searches for a vehicle by name in a linked list and returns true if found,
+     * otherwise false.
+     * 
+     * @param nome The parameter "nome" is an Object representing the name of a vehicle that is being
+     * searched for in a linked list of vehicles.
+     * @return The method returns a boolean value, either true if the object with the given name is
+     * found in the linked list, or false if it is not found.
+     */
     public boolean busca(Object nome){
         if (nome == null || nome.toString().trim().isEmpty()) {
             throw new IllegalArgumentException("O nome do veículo não pode ser nulo ou vazio.");
@@ -108,6 +126,14 @@ public class LDEVeiculos implements Lista{
         return false; // Retorna false se não encontrar o elemento
     }
 
+  /**
+   * This function removes a node from a doubly linked list of vehicles based on its ID.
+   * 
+   * @param id an integer representing the ID of the vehicle to be removed from a linked list of
+   * vehicles.
+   * @return The method returns a boolean value. It returns true if the element with the given id was
+   * found and removed from the linked list, and false if the element was not found in the linked list.
+   */
     public boolean remove(int id){
         NohVeiculos aux = inicio;
         while (aux != null) {
