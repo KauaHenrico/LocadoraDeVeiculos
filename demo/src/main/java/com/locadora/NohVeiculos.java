@@ -1,18 +1,27 @@
 package com.locadora;
 public class NohVeiculos {
-    private Object info; //este exemplo armazena números inteiros
+    private Veiculo veiculo; //este exemplo armazena números inteiros
     private NohVeiculos ant; //destaque para o atributo ant de anterior
     private NohVeiculos prox;
-    public NohVeiculos (Object info){
-    this.info = info;
+
+    public NohVeiculos (Veiculo veiculo){
+    this.veiculo = veiculo;
     this.ant = null;
     this.prox = null;
     }
    
     
-    public Object getInfo() { 
-        return this.info;
-     }
+    public Veiculo getVeiculo() { 
+        return this.veiculo;
+
+
+
+
+    }
+
+    public void setVeiculo(Veiculo veiculo) { this.veiculo = veiculo; }
+
+
     public NohVeiculos getProx() { 
         return this.prox;
     }

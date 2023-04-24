@@ -8,9 +8,9 @@ public class LDEVeiculos implements Lista{
     this.fim = null;
     }
 
-    public void insereInicio(Object info) { //info = 5
-        if(info instanceof Veiculo ){ 
-        NohVeiculos novo = new NohVeiculos(info);
+    public void insereInicio(Veiculo veiculo) { //info = 5
+        if(veiculo instanceof Veiculo ){ 
+        NohVeiculos novo = new NohVeiculos(veiculo);
         if (inicio == null){
         inicio = novo;
         fim = novo;
@@ -19,15 +19,15 @@ public class LDEVeiculos implements Lista{
         inicio.setAnt(novo);
         inicio = novo;}
         }else {
-            System.out.println("Não é um aluno");}
+            System.out.println("Não é um veiculo");}
         }
 
 
         
         
-    public void insereFim(Object info) {
-        if(info instanceof Veiculo ){ 
-        NohVeiculos novo = new NohVeiculos(info);
+    public void insereFim(Veiculo veiculo) {
+        if(veiculo instanceof Veiculo ){ 
+        NohVeiculos novo = new NohVeiculos(veiculo);
         if (inicio == null){
         inicio = novo;
         fim = novo;
@@ -36,8 +36,9 @@ public class LDEVeiculos implements Lista{
             fim.setProx(novo);
             fim = novo;
             
-        } }else {
-            System.out.println("Não é um aluno");}
+        } 
+    }else {
+            System.out.println("Não é um veiculo");}
 
 
 
@@ -73,26 +74,15 @@ public class LDEVeiculos implements Lista{
      */
      public void imprime() {
         NohVeiculos aux = inicio;
+        System.out.println("Placas:");
         while (aux != null){
-            if(aux.getInfo() instanceof Veiculo){
-                Veiculo a = (Veiculo) aux.getInfo();
-                System.out.println(a.getNome());
-                if(a.getAno() == 0){
-                    System.out.println("Ano não informado");}
-                else{
-                System.out.println(a.getAno());}
-                if(a.getMarca() == null){
-                    System.out.println("Marca não informada");}
-                else{
-
-                System.out.println(a.getMarca());
-               
-                }
-                if(a.getPlaca() == null){
-                    System.out.println("Placa não informada");}
-                else{
+            if(aux.getVeiculo() instanceof Veiculo){
+                Veiculo a = (Veiculo) aux.getVeiculo();
+            
                 System.out.println(a.getPlaca());
-                }
+            
+
+              
             }
             aux = aux.getProx();
         }
@@ -100,32 +90,35 @@ public class LDEVeiculos implements Lista{
 
 
 
-    /**
-     * This function searches for a vehicle by name in a linked list and returns true if found,
-     * otherwise false.
-     * 
-     * @param nome The parameter "nome" is an Object representing the name of a vehicle that is being
-     * searched for in a linked list of vehicles.
-     * @return The method returns a boolean value, either true if the object with the given name is
-     * found in the linked list, or false if it is not found.
-     */
-    public boolean busca(Object nome){
-        if (nome == null || nome.toString().trim().isEmpty()) {
+    public boolean busca(String placa){
+        if (placa == null || placa.toString().trim().isEmpty()) {
             throw new IllegalArgumentException("O nome do veículo não pode ser nulo ou vazio.");
         }
         NohVeiculos aux = inicio;
+        boolean encontrado = false;
         while(aux != null){
-            if(aux.getInfo() instanceof Veiculo){
-                Veiculo a = (Veiculo) aux.getInfo();
-                if(a.getNome().equals(nome)) {
-                    return true;
+            if(aux.getVeiculo() instanceof Veiculo){
+                Veiculo a = (Veiculo) aux.getVeiculo();
+                if(a.getPlaca().equals(placa)) {
+                    System.out.println("Veiculo encontrado");
+                    System.out.println(a.getPlaca());
+                    System.out.println(a.getMarca());
+                    System.out.println(a.getModelo());
+                    System.out.println(a.getAno());
+                    int idCategoria = a.getIdCategoria();
+                    String nomeCategoria = a.getCategorias().get(idCategoria);
+                    System.out.println("Categoria: " + idCategoria + " - " + nomeCategoria);
+                    encontrado = true;
+                    break;
                 }
-            } 
+            }
             aux = aux.getProx();
         }
-        return false; // Retorna false se não encontrar o elemento
+        if (!encontrado) {
+            System.out.println("Veiculo não encontrado");
+        }
+        return encontrado;
     }
-
   /**
    * This function removes a node from a doubly linked list of vehicles based on its ID.
    * 
@@ -134,12 +127,12 @@ public class LDEVeiculos implements Lista{
    * @return The method returns a boolean value. It returns true if the element with the given id was
    * found and removed from the linked list, and false if the element was not found in the linked list.
    */
-    public boolean remove(int id){
+    public boolean remove(Object placa) {
         NohVeiculos aux = inicio;
         while (aux != null) {
-            if(aux.getInfo() instanceof Veiculo){
-                Veiculo a = (Veiculo) aux.getInfo();
-                if(a.getId() == id) {
+            if(aux.getVeiculo() instanceof Veiculo){
+                Veiculo a = (Veiculo) aux.getVeiculo();
+                if(a.getPlaca().equals(placa)) {
                     if (aux == inicio) {
                         inicio = inicio.getProx();
                         if (inicio != null) {
@@ -161,4 +154,32 @@ public class LDEVeiculos implements Lista{
         }
         return false; // retorna false se o elemento não foi removido
     }
+
+
+    public boolean buscaCategoria(int id){
+        NohVeiculos aux = inicio;
+        boolean encontrado = false;
+        while(aux != null){
+            if(aux.getVeiculo() instanceof Veiculo){
+                Veiculo a = (Veiculo) aux.getVeiculo();
+                if(a.getCategoria() == id) {
+                    System.out.println("Categoria encontrada");
+                    System.out.println(a.getCategoria());
+                    String nomeCategoria =a.getCategorias().get(id);
+                    System.out.println("Categoria do veículo: " + id + " - " + nomeCategoria);
+                
+                    encontrado = true;
+                    break;
+                }
+            }
+            aux = aux.getProx();
+        }
+        if (!encontrado) {
+            System.out.println("Carro não encontrado");
+        }
+        return encontrado;
+    }
+
+
+
 }
