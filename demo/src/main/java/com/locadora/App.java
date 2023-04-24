@@ -18,7 +18,7 @@ public class App
                     // Ignora a primeira linha, que contém apenas os nomes das colunas
                     scanner.nextLine();
         
-                    while (scanner.hasNextLine()) {
+                   while (scanner.hasNextLine()) {
                         String linha = scanner.nextLine();
                         String[] colunas = linha.split(";");
         
@@ -31,11 +31,8 @@ public class App
                         int idCategoria = Integer.parseInt(colunas[6]);
                         Veiculo veiculo = new Veiculo(placa, modelo, ano, potencia, lugares, marca, idCategoria);
                         veiculo.setCategoria(idCategoria);
-
                         listaV.insereInicio(veiculo);
-                      
-                      
-                        // Adiciona o veículo em algum lugar, como uma lista
+
                     }
         
                     scanner.close();
@@ -44,10 +41,12 @@ public class App
                 }
 
 
-                listaV.busca("IVY-5357");
-               listaV.remove("IVY-5357");
-                listaV.busca("IVY-5357");
+               
 
+                listaV.imprime();
+                
+                listaV.busca("IVI-5T72");
+                
                 
 
 

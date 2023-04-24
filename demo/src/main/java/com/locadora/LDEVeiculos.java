@@ -90,7 +90,7 @@ public class LDEVeiculos implements Lista{
 
 
 
-    public boolean busca(String placa){
+    public boolean busca(String placa) {
         if (placa == null || placa.toString().trim().isEmpty()) {
             throw new IllegalArgumentException("O nome do veículo não pode ser nulo ou vazio.");
         }
@@ -105,6 +105,7 @@ public class LDEVeiculos implements Lista{
                     System.out.println("Marca: "+a.getMarca());
                     System.out.println("Modelo: " + a.getModelo());
                     System.out.println("Ano: "+a.getAno());
+                    System.out.println("Lugares: "+a.getLugares());
                     System.out.println("Potencia "+ a.getPotencia());
                     int idCategoria = a.getIdCategoria();
                     String nomeCategoria = a.getCategorias().get(idCategoria);
@@ -171,6 +172,7 @@ public class LDEVeiculos implements Lista{
                 if(a.getCategoria() == id) {
                     System.out.println("Categoria encontrada");
                     System.out.println(a.getCategoria());
+                    
                     String nomeCategoria =a.getCategorias().get(id);
                     System.out.println("Categoria do veículo: " + id + " - " + nomeCategoria);
                 
