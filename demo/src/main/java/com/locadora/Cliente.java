@@ -8,9 +8,7 @@ public class Cliente {
     private String cpf;
     private String telefone;
     private String cnh;
-    private ArrayList<locacao> locacoes = new ArrayList<>()
+    private ArrayList<locacao> locacoes = new ArrayList<>();
 
-    public boolean temlocacao(){
-        return !locacoes.isEmpyt
-    }
+   
 }

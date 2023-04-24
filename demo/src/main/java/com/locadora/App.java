@@ -1,21 +1,61 @@
 package com.locadora;
-
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 /*  Autores: Kauã Henrico da Silva Souza, Guilherme de Avila de Moura, Andre Luiz Mendes Miranda
  */
 public class App 
 {
     public static void main( String[] args )
     {
-        Reader reader = new Reader();
+       LDEVeiculos listaV = new LDEVeiculos();
+     
+      
+                try {
+                    File file = new File("D:\\Documentos\\UNIPAMPA\\EstruturaDeDados\\LocadoraDeVeiculos\\demo\\src\\main\\java\\com\\locadora\\Veiculos.csv");
+                    Scanner scanner = new Scanner(file);
         
-        String caminhoArquivo = "caminho/do/arquivo.csv";
-        String[][] dados = reader.lerArquivoCSV(caminhoArquivo);
+                    // Ignora a primeira linha, que contém apenas os nomes das colunas
+                    scanner.nextLine();
         
-        // Exemplo de impressão dos dados lidos do arquivo CSV
-        for (String[] linha : dados) {
-            for (String coluna : linha) {
-                System.out.print(coluna + " ");
+                   while (scanner.hasNextLine()) {
+                        String linha = scanner.nextLine();
+                        String[] colunas = linha.split(";");
+        
+                        String placa = colunas[0];
+                        String modelo = colunas[1];
+                        String marca = colunas[2];
+                        int ano = Integer.parseInt(colunas[3]);
+                        float potencia = Float.parseFloat(colunas[4]);
+                        int lugares = Integer.parseInt(colunas[5]);
+                        int idCategoria = Integer.parseInt(colunas[6]);
+                        Veiculo veiculo = new Veiculo(placa, modelo, ano, potencia, lugares, marca, idCategoria);
+                        veiculo.setCategoria(idCategoria);
+                        listaV.insereInicio(veiculo);
+
+                    }
+        
+                    scanner.close();
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+
+
+               
+
+                listaV.imprime();
+                
+                listaV.busca("IVI-5T72");
+                
+                
+
+
             }
-            System.out.println();}
-    }
-}
+
+        
+
+            
+        }
+
+        
+    
