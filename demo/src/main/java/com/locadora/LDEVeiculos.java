@@ -127,7 +127,7 @@ public class LDEVeiculos implements Lista{
    * @return The method returns a boolean value. It returns true if the element with the given id was
    * found and removed from the linked list, and false if the element was not found in the linked list.
    */
-    public boolean remove(Object placa) {
+    public boolean remove(String placa) {
         NohVeiculos aux = inicio;
         while (aux != null) {
             if(aux.getVeiculo() instanceof Veiculo){
@@ -180,6 +180,15 @@ public class LDEVeiculos implements Lista{
         return encontrado;
     }
 
-
+    public boolean existeVeiculo(String placa) {
+    NohVeiculos aux = inicio;
+    while (aux != null) {
+        if (aux.getVeiculo().getPlaca().equals(placa)) {
+            return true;
+        }
+        aux = aux.getProx();
+    }
+    return false;
+}
 
 }
