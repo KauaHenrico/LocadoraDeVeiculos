@@ -101,10 +101,11 @@ public class LDEVeiculos implements Lista{
                 Veiculo a = (Veiculo) aux.getVeiculo();
                 if(a.getPlaca().equals(placa)) {
                     System.out.println("Veiculo encontrado");
-                    System.out.println(a.getPlaca());
-                    System.out.println(a.getMarca());
-                    System.out.println(a.getModelo());
-                    System.out.println(a.getAno());
+                    System.out.println("Placa: " + a.getPlaca());
+                    System.out.println("Marca: "+a.getMarca());
+                    System.out.println("Modelo: " + a.getModelo());
+                    System.out.println("Ano: "+a.getAno());
+                    System.out.println("Potencia "+ a.getPotencia());
                     int idCategoria = a.getIdCategoria();
                     String nomeCategoria = a.getCategorias().get(idCategoria);
                     System.out.println("Categoria: " + idCategoria + " - " + nomeCategoria);
@@ -128,8 +129,12 @@ public class LDEVeiculos implements Lista{
    * found and removed from the linked list, and false if the element was not found in the linked list.
    */
     public boolean remove(String placa) {
+        if(placa.isEmpty()){
+            throw new IllegalArgumentException("O nome do veículo não pode ser nulo ou vazio.");
+        }
         NohVeiculos aux = inicio;
         while (aux != null) {
+
             if(aux.getVeiculo() instanceof Veiculo){
                 Veiculo a = (Veiculo) aux.getVeiculo();
                 if(a.getPlaca().equals(placa)) {
@@ -149,6 +154,7 @@ public class LDEVeiculos implements Lista{
                     }
                     return true; // retorna true se o elemento foi removido
                 }
+               
             }
             aux = aux.getProx();
         }

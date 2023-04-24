@@ -83,4 +83,14 @@ public class AppTest
 
 
             }
+
+            @Test  (expected = IllegalArgumentException.class)
+            public void removeVazio(){
+                LDEVeiculos lista = new LDEVeiculos();
+                Veiculo veiculo = new Veiculo("ABC-1234", "Fusca", 1990, 1.0f, 4, "Volkswagen", 1010);
+                lista.insereInicio(veiculo);
+                lista.remove("ABC-1234");
+                lista.remove("");
+                
+            }
 }
