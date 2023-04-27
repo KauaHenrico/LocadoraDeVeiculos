@@ -1,8 +1,6 @@
 package com.locadora;
 
-import java.util.Date;
 
-import javax.xml.crypto.Data;
 
 public interface ListaLocação {
     public void cadastra(locacao locacao);

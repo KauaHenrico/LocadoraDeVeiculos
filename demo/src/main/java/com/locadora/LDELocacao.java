@@ -1,8 +1,6 @@
 package com.locadora;
 
-import java.util.Date;
 
-import javax.print.DocFlavor.STRING;
 
 public class LDELocacao implements ListaLocação {
     private NohLocacoes inicio;

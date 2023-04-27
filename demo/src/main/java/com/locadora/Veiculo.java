@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class Veiculo {
 
-    private String nome;
+   
     private int categoria;
     private String placa;
     private String modelo;
