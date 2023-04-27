@@ -12,6 +12,6 @@ public interface ListaLocação {
     public int tamanho();
     public void imprime();
     public boolean busca(String placa);
-    public void locarVeiculo(String placa, String cpf, Date dataLocacao, Date dataDevolucao);
+    public void locarVeiculo(String placa, String cpf);
     
 }

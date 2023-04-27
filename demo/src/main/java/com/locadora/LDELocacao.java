@@ -2,6 +2,8 @@ package com.locadora;
 
 import java.util.Date;
 
+import javax.print.DocFlavor.STRING;
+
 public class LDELocacao implements ListaLocação {
     private NohLocacoes inicio;
     private NohLocacoes fim;
@@ -110,7 +112,7 @@ public class LDELocacao implements ListaLocação {
                     System.out.println("Data de locação: "+a.getDataLocacao());
                     System.out.println("Data de devolução: "+a.getDataDevolucao());
                     System.out.println("Valor da locação: "+a.getValorLocacao());
-                    
+
                    
                     encontrado = true;
                     break;
@@ -125,12 +127,41 @@ public class LDELocacao implements ListaLocação {
     }
     
     @Override
-    public void locarVeiculo(String placa, String cpf, Date dataLocacao, Date dataDevolucao) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'locarVeiculo'");
+    public void locarVeiculo(String placa, String cpf) {
+        if (placa == null || placa.toString().trim().isEmpty()) {
+            throw new IllegalArgumentException("O nome do veículo não pode ser nulo ou vazio.");
+        }
+        if (cpf == null || cpf.toString().trim().isEmpty()) {
+            throw new IllegalArgumentException("O nome do cliente não pode ser nulo ou vazio.");
+        }
+      
+        NohLocacoes aux = inicio;
+        boolean encontrado = false;
+        while(aux != null){
+            if(aux.getlocacao() instanceof locacao){
+                locacao a = (locacao) aux.getlocacao();
+                if(a.getVeiculo().equals(placa)) {
+                    System.out.println("Veiculo encontrado:");
+                    System.out.println("Cliente: " + a.getCliente());
+                    System.out.println("Veiculo: "+a.getVeiculo());
+                    System.out.println("Data de locação: "+a.getDataLocacao());
+                    System.out.println("Data de devolução: "+a.getDataDevolucao());
+                    System.out.println("Valor da locação: "+a.calcularValorTotal());
+                    encontrado = true;
+                    break;
+                }
+            }
+            aux = aux.getProx();
+        }
+        if (!encontrado) {
+            System.out.println("Veiculo não encontrado");
+        }
     }
 
 
 
+
+
+   
 
 }

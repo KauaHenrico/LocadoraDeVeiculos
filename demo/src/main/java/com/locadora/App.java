@@ -9,10 +9,11 @@ public class App
     public static void main( String[] args )
     {
        LDEVeiculos listaV = new LDEVeiculos();
-     
-      
+       LDEClientes listaC = new LDEClientes();
+       LDELocacao listaL = new LDELocacao();
+   
                 try {
-                    File file = new File("D:\\Documentos\\UNIPAMPA\\EstruturaDeDados\\LocadoraDeVeiculos\\demo\\src\\main\\java\\com\\locadora\\Veiculos.csv");
+                    File file = new File("C:\\Users\\André\\OneDrive\\Documentos\\Unipampa\\EstruturaDeDados\\LocadoraDeVeiculos\\demo\\src\\main\\java\\com\\locadora\\Veiculos.csv");
                     Scanner scanner = new Scanner(file);
         
                     // Ignora a primeira linha, que contém apenas os nomes das colunas
@@ -32,6 +33,10 @@ public class App
                         Veiculo veiculo = new Veiculo(placa, modelo, ano, potencia, lugares, marca, idCategoria);
                         veiculo.setCategoria(idCategoria);
                         listaV.insereInicio(veiculo);
+                        Cliente cliente = new Cliente("Andre", "12345678910", "Rua 1", "123456789");
+                        listaC.insereInicio(cliente);
+                        locacao locacao = new locacao(veiculo, cliente, "01/01/2021", "10/01/2021", 100.00f);
+                        listaL.cadastra(locacao);
 
                     }
         
@@ -40,19 +45,25 @@ public class App
                     e.printStackTrace();
                 }
 
+                
+                    
+            
+
+                
+             
+               
+                listaL.locarVeiculo("IVI-5T72", "12345678910");
+             
+                
+                
+            
 
                
-
-                listaV.imprime();
-                
-                listaV.busca("IVI-5T72");
-                
-                
 
 
             }
 
-        
+          
 
             
 

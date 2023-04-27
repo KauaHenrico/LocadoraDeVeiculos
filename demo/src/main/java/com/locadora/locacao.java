@@ -3,6 +3,7 @@ package com.locadora;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 public class locacao {
    private int codLocacao;
@@ -114,7 +115,16 @@ public String getDataLocacaoFormatted() {
     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
     return sdf.format(dataLocacao);
  }
- 
 
+ public long calcularTempoLocacao() {
+    long diferenca = dataDevolucao.getTime() - dataLocacao.getTime();
+    long dias = TimeUnit.MILLISECONDS.toDays(diferenca);
+    return dias;
+ }
+
+ public float calcularValorTotal() {
+    return valorLocacao * calcularTempoLocacao();
+ }
+ 
     
 }

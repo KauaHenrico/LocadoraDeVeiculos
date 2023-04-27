@@ -46,5 +46,21 @@ public class testeLocacao {
     
    }
 
+
+    @Test
+    public void cadastrarTest(){
+        Cliente c1 = new Cliente("João", "12345678910", "999999999", "12345678910");
+        Veiculo v1 = new Veiculo("ABC-1234", "Fusca", 1990, 1.0f, 4, "Volkswagen", 1010);
+        locacao loc = new locacao(v1, c1, "12/04/2022", "19/06/2022", 200);
+        LDELocacao lista = new LDELocacao();
+        lista.cadastra(loc);
+
+
+        assertEquals(13600, loc.calcularValorTotal(), 0.01);
+        
+
+
+    }
+
     
 }
