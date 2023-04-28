@@ -111,6 +111,8 @@ public class LDELocacao implements ListaLocação {
                     System.out.println("Data de locação: "+a.getDataLocacao());
                     System.out.println("Data de devolução: "+a.getDataDevolucao());
                     System.out.println("Valor da locação: "+a.getValorLocacao());
+                    System.out.println("Tempo de Locação: "+a.calcularTempoLocacao());
+                    System.out.println("Valor total da locação: "+a.calcularValorTotal());
 
                    
                     encontrado = true;

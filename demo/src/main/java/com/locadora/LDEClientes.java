@@ -143,8 +143,11 @@ public class LDEClientes {
     public boolean existeCliente(String cpf) {
         NohClientes aux = primeiro;
         while (aux != null) {
+            
             if (aux.getCliente().getCpf().equals(cpf)) {
+                System.out.println("Existe!");
                 return true;
+             
             }
             aux = aux.getProximo();
         }

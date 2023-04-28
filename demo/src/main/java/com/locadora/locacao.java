@@ -20,12 +20,13 @@ private  Date dataLocacao;
    public locacao ( String placa, String  cpf, String dataLocacao, String dataDevolucao, float valorLocacao){
 
     this.codLocacao = contador++;
-    if(clientes.existeCliente(cpf)){
+
+    if(!clientes.existeCliente(cpf)){
          this.cpf = cpf;
     }else{
         throw new IllegalArgumentException("Cliente não cadastrado");
     }
-    if(veiculos.existeVeiculo(placa)){
+    if(!veiculos.existeVeiculo(placa)){
         this.placa = placa;
     }else{
         throw new IllegalArgumentException("Veículo não cadastrado");

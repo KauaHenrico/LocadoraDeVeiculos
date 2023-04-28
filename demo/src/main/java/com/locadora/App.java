@@ -53,23 +53,25 @@ public class App
 
 
 
-            Cliente c1 = new Cliente("12345678910", "Kauã", "Rua 1", "123456789");
+            Cliente c1 = new Cliente("12345678910", "12345678910", "Rua 1", "123456789");
             Cliente c2 = new Cliente("12345678911", "Guilherme", "Rua 2", "123456789");
             
             
 
             listaC.insereInicio(c1);
             listaC.insereInicio(c2);
+            listaC.existeCliente("12345678910");
 
+          locacao l1 = new locacao("IVI-1234", "12345678910",  "12/12/2020", "12/12/2022", 100);
+                listaL.cadastra(l1);
             
-            locacao l1 = new locacao("IVY-5357", "12345678910", "01/01/2021", "01/02/2021", 1);
-            
-            listaL.cadastra(l1);
+            listaL.busca("IVI-1234");
+           
             
 
                
-                listaL.busca("IVY-5357");
-                
+              
+             
 
             }
 
