@@ -137,4 +137,17 @@ public class LDEClientes {
             throw new IllegalArgumentException("O CPF informado não está na lista!");
         }
     }
+
+
+
+    public boolean existeCliente(String cpf) {
+        NohClientes aux = primeiro;
+        while (aux != null) {
+            if (aux.getCliente().getCpf().equals(cpf)) {
+                return true;
+            }
+            aux = aux.getProximo();
+        }
+        return false;
+    }
 }

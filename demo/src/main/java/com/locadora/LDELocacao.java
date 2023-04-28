@@ -5,11 +5,12 @@ package com.locadora;
 public class LDELocacao implements ListaLocação {
     private NohLocacoes inicio;
     private NohLocacoes fim;
-    
-
+    private LDEVeiculos veiculos;
+    private LDEClientes clientes;
     public LDELocacao() {
         this.inicio = null;
         this.fim = null;
+       
     }
     @Override
     public void cadastra(locacao locacao) { //info = 5
@@ -48,7 +49,7 @@ public class LDELocacao implements ListaLocação {
 
             if(aux.getlocacao() instanceof locacao){
                 locacao a = (locacao) aux.getlocacao();
-                if(a.getVeiculo().equals(placa)) {
+                if(a.getPlaca().equals(placa)) {
                     if (aux == inicio) {
                         inicio = inicio.getProx();
                         if (inicio != null) {
@@ -103,10 +104,10 @@ public class LDELocacao implements ListaLocação {
         while(aux != null){
             if(aux.getlocacao() instanceof locacao){
                 locacao a = (locacao) aux.getlocacao();
-                if(a.getVeiculo().equals(placa)) {
+                if(a.getPlaca().equals(placa)) {
                     System.out.println("Locação encontrada:");
-                    System.out.println("Cliente: " + a.getCliente());
-                    System.out.println("Veiculo: "+a.getVeiculo());
+                    System.out.println("Cliente: " + a.getCpf());
+                    System.out.println("Veiculo: "+a.getPlaca());
                     System.out.println("Data de locação: "+a.getDataLocacao());
                     System.out.println("Data de devolução: "+a.getDataDevolucao());
                     System.out.println("Valor da locação: "+a.getValorLocacao());
@@ -138,16 +139,19 @@ public class LDELocacao implements ListaLocação {
         while(aux != null){
             if(aux.getlocacao() instanceof locacao){
                 locacao a = (locacao) aux.getlocacao();
-                if(a.getVeiculo().equals(placa)) {
+                if(veiculos.existeVeiculo(placa) && clientes.existeCliente(cpf)) {
                     System.out.println("Veiculo encontrado:");
-                    System.out.println("Cliente: " + a.getCliente());
-                    System.out.println("Veiculo: "+a.getVeiculo());
+                    System.out.println("Cliente: " + a.getCpf());
+                    System.out.println("Veiculo: "+a.getPlaca());
                     System.out.println("Data de locação: "+a.getDataLocacao());
                     System.out.println("Data de devolução: "+a.getDataDevolucao());
-                    System.out.println("Valor da locação: "+a.calcularValorTotal());
+                    System.out.println("Valor da locação: "+a.getValorLocacao());
+
+                   
                     encontrado = true;
                     break;
                 }
+                
             }
             aux = aux.getProx();
         }

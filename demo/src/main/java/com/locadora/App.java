@@ -11,9 +11,9 @@ public class App
        LDEVeiculos listaV = new LDEVeiculos();
        LDEClientes listaC = new LDEClientes();
        LDELocacao listaL = new LDELocacao();
-   
+        Veiculo veiculo = null;
                 try {
-                    File file = new File("C:\\Users\\André\\OneDrive\\Documentos\\Unipampa\\EstruturaDeDados\\LocadoraDeVeiculos\\demo\\src\\main\\java\\com\\locadora\\Veiculos.csv");
+                    File file = new File("D:\\Documentos\\UNIPAMPA\\EstruturaDeDados\\LocadoraDeVeiculos\\demo\\src\\main\\java\\com\\locadora\\Veiculos.csv");
                     Scanner scanner = new Scanner(file);
         
                     // Ignora a primeira linha, que contém apenas os nomes das colunas
@@ -30,13 +30,10 @@ public class App
                         float potencia = Float.parseFloat(colunas[4]);
                         int lugares = Integer.parseInt(colunas[5]);
                         int idCategoria = Integer.parseInt(colunas[6]);
-                        Veiculo veiculo = new Veiculo(placa, modelo, ano, potencia, lugares, marca, idCategoria);
+                        veiculo = new Veiculo(placa, modelo, ano, potencia, lugares, marca, idCategoria);
                         veiculo.setCategoria(idCategoria);
                         listaV.insereInicio(veiculo);
-                        Cliente cliente = new Cliente("Andre", "12345678910", "Rua 1", "123456789");
-                        listaC.insereInicio(cliente);
-                        locacao locacao = new locacao(veiculo, cliente, "01/01/2021", "10/01/2021", 100.00f);
-                        listaL.cadastra(locacao);
+                      
 
                     }
         
@@ -52,15 +49,27 @@ public class App
                 
              
                
-                listaL.locarVeiculo("IVI-5T72", "12345678910");
-                listaL.locarVeiculo("IVY-5357", "12345678910");
-             
-                
-                
+               listaV.imprime();
+
+
+
+            Cliente c1 = new Cliente("12345678910", "Kauã", "Rua 1", "123456789");
+            Cliente c2 = new Cliente("12345678911", "Guilherme", "Rua 2", "123456789");
+            
+            
+
+            listaC.insereInicio(c1);
+            listaC.insereInicio(c2);
+
+            
+            locacao l1 = new locacao("IVY-5357", "12345678910", "01/01/2021", "01/02/2021", 1);
+            
+            listaL.cadastra(l1);
             
 
                
-
+                listaL.busca("IVY-5357");
+                
 
             }
 

@@ -7,19 +7,30 @@ import java.util.concurrent.TimeUnit;
 
 public class locacao {
    private int codLocacao;
-   private String veiculo;
-   private  String cliente;
-  private  Date dataLocacao;
+   private String placa;
+   private  String cpf;
+  LDEClientes clientes = new LDEClientes(); 
+  LDEVeiculos veiculos = new LDEVeiculos();
+private  Date dataLocacao;
    private Date dataDevolucao;
    private float valorLocacao;
    private static int contador = 1;
     
 
-   public locacao ( Veiculo veiculo, Cliente  cliente, String dataLocacao, String dataDevolucao, float valorLocacao){
+   public locacao ( String placa, String  cpf, String dataLocacao, String dataDevolucao, float valorLocacao){
 
     this.codLocacao = contador++;
-      this.veiculo = veiculo.getPlaca();
-      this.cliente = cliente.getCpf();
+    if(clientes.existeCliente(cpf)){
+         this.cpf = cpf;
+    }else{
+        throw new IllegalArgumentException("Cliente não cadastrado");
+    }
+    if(veiculos.existeVeiculo(placa)){
+        this.placa = placa;
+    }else{
+        throw new IllegalArgumentException("Veículo não cadastrado");
+    }
+   
       
       
       SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -62,23 +73,26 @@ public void setCodLocacao(int codLocacao) {
 }
 
 
-public String getVeiculo() {
-    return veiculo;
+public String getPlaca() {
+    return placa;
 }
 
 
-public void setVeiculo(String veiculo) {
-    this.veiculo = veiculo;
+
+public void setPlaca(String placa) {
+    this.placa = placa;
 }
 
 
-public String getCliente() {
-    return cliente;
+public String getCpf() {
+    return cpf;
 }
 
 
-public void setCliente(String cliente) {
-    this.cliente = cliente;
+
+
+public void setCpf(String cpf) {
+    this.cpf = cpf;
 }
 
 

@@ -68,7 +68,7 @@ public class Veiculo {
         }
         
         try {
-            File file = new File("C:\\Users\\André\\OneDrive\\Documentos\\Unipampa\\EstruturaDeDados\\LocadoraDeVeiculos\\demo\\src\\main\\java\\com\\locadora\\Categorias.csv");
+            File file = new File("D:\\Documentos\\UNIPAMPA\\EstruturaDeDados\\LocadoraDeVeiculos\\demo\\src\\main\\java\\com\\locadora\\Categorias.csv");
             Scanner scanner = new Scanner(file);
     
             // Ignora a primeira linha, que contém apenas os nomes das colunas
