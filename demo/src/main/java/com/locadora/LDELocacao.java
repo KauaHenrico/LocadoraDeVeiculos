@@ -15,11 +15,14 @@ public class LDELocacao implements ListaLocação {
     @Override
     public void cadastra(locacao locacao) { //info = 5
         if(locacao instanceof locacao ){ 
+            System.out.println("Cadastro realizado com sucesso -- Cliente: "+locacao.getCpf()+" Veiculo: "+locacao.getPlaca());
+            System.out.println("Cliente: "+locacao.getCpf()+"Veiculo: "+locacao.getPlaca());
         NohLocacoes novo = new NohLocacoes(locacao);
         if (inicio == null){
         inicio = novo;
         fim = novo;
         }else {
+       
         novo.setProx(inicio);
         inicio.setAnt(novo);
         inicio = novo;}
