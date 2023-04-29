@@ -121,21 +121,15 @@ public class LDEVeiculos implements Lista{
         }
         return encontrado;
     }
-  /**
-   * This function removes a node from a doubly linked list of vehicles based on its ID.
-   * 
-   * @param id an integer representing the ID of the vehicle to be removed from a linked list of
-   * vehicles.
-   * @return The method returns a boolean value. It returns true if the element with the given id was
-   * found and removed from the linked list, and false if the element was not found in the linked list.
-   */
+
+
     public boolean remove(String placa) {
         if(placa.isEmpty()){
             throw new IllegalArgumentException("O nome do veículo não pode ser nulo ou vazio.");
         }
         NohVeiculos aux = inicio;
         while (aux != null) {
-
+        
             if(aux.getVeiculo() instanceof Veiculo){
                 Veiculo a = (Veiculo) aux.getVeiculo();
                 if(a.getPlaca().equals(placa)) {

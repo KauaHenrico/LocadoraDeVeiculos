@@ -94,11 +94,23 @@ public class LDELocacao implements ListaLocação {
 
     @Override
     public void imprime() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'imprime'");
+        NohLocacoes aux = inicio;
+        System.out.println("Placas:");
+        while (aux != null){
+            if(aux.getlocacao() instanceof locacao){
+                locacao a = (locacao) aux.getlocacao();
+            
+                System.out.println(a.getCodLocacao());
+            
+
+              
+            }
+            aux = aux.getProx();
+        }
+
     }
     @Override
-    public boolean busca(String placa) {
+    public boolean busca(String placa ) {
         if (placa == null || placa.toString().trim().isEmpty()) {
             throw new IllegalArgumentException("O nome do veículo não pode ser nulo ou vazio.");
         }
@@ -129,41 +141,72 @@ public class LDELocacao implements ListaLocação {
         }
         return encontrado;
     }
-    
-    @Override
-    public void locarVeiculo(String placa, String cpf) {
-        if (placa == null || placa.toString().trim().isEmpty()) {
-            throw new IllegalArgumentException("O nome do veículo não pode ser nulo ou vazio.");
+
+    public boolean busca(int codLocacao ) {
+        if (codLocacao == 0 ) {
+            throw new IllegalArgumentException("O codigo de locação não pode ser nulo ou vazio.");
         }
-        if (cpf == null || cpf.toString().trim().isEmpty()) {
-            throw new IllegalArgumentException("O nome do cliente não pode ser nulo ou vazio.");
-        }
-      
         NohLocacoes aux = inicio;
         boolean encontrado = false;
         while(aux != null){
             if(aux.getlocacao() instanceof locacao){
                 locacao a = (locacao) aux.getlocacao();
-                if(veiculos.existeVeiculo(placa) && clientes.existeCliente(cpf)) {
-                    System.out.println("Veiculo encontrado:");
+                if(a.getCodLocacao() == codLocacao) {
+                    System.out.println("Locação encontrada:");
                     System.out.println("Cliente: " + a.getCpf());
                     System.out.println("Veiculo: "+a.getPlaca());
                     System.out.println("Data de locação: "+a.getDataLocacao());
                     System.out.println("Data de devolução: "+a.getDataDevolucao());
                     System.out.println("Valor da locação: "+a.getValorLocacao());
+                    System.out.println("Tempo de Locação: "+a.calcularTempoLocacao());
+                    System.out.println("Valor total da locação: "+a.calcularValorTotal());
 
                    
                     encontrado = true;
                     break;
                 }
-                
             }
             aux = aux.getProx();
         }
         if (!encontrado) {
-            System.out.println("Veiculo não encontrado");
+            System.out.println("Locação não encontrada");
         }
+        return encontrado;
     }
+
+    public boolean buscaCpf(String cpf ) {
+        if (cpf == null || cpf.toString().trim().isEmpty()) {
+            throw new IllegalArgumentException("O cpf de locação não pode ser nulo ou vazio.");
+        }
+        NohLocacoes aux = inicio;
+        boolean encontrado = false;
+        while(aux != null){
+            if(aux.getlocacao() instanceof locacao){
+                locacao a = (locacao) aux.getlocacao();
+                if(a.getCpf() == cpf) {
+                    System.out.println("Locação encontrada:");
+                    System.out.println("Cliente: " + a.getCpf());
+                    System.out.println("Veiculo: "+a.getPlaca());
+                    System.out.println("Data de locação: "+a.getDataLocacao());
+                    System.out.println("Data de devolução: "+a.getDataDevolucao());
+                    System.out.println("Valor da locação: "+a.getValorLocacao());
+                    System.out.println("Tempo de Locação: "+a.calcularTempoLocacao());
+                    System.out.println("Valor total da locação: "+a.calcularValorTotal());
+
+                   
+                    encontrado = true;
+                    break;
+                }
+            }
+            aux = aux.getProx();
+        }
+        if (!encontrado) {
+            System.out.println("Locação não encontrada");
+        }
+        return encontrado;
+    }
+    
+
 
 
 
