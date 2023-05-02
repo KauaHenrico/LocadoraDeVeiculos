@@ -69,7 +69,8 @@ public class App
            
             
 
-               
+            locacao l2 = new locacao("IVI-1235", "12345678911",  "12/12/2020", "12/12/2022", 100);
+                listaL.cadastra(l2);
               
              
 
