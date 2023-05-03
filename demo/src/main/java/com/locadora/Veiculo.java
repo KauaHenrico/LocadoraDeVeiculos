@@ -2,6 +2,9 @@ package com.locadora;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -26,7 +29,7 @@ public class Veiculo {
         this.idCategoria = idCategoria;
     }
 
-    private Map<Integer, String> categorias = new HashMap<>();
+   private Map<Integer, String> categorias = new HashMap<Integer, String>();
 
    
 
@@ -160,8 +163,51 @@ public class Veiculo {
     }
 
  
-
     
 
+    public boolean categoriaExiste(int idCategoria) {
+        return categorias.containsKey(idCategoria);
+    }
+
+    public boolean adicionaCategoria(int id, String nomeCategoria) throws IOException {
+        // Verifica se o ID da categoria já existe
+        if (categorias.containsKey(idCategoria)) {
+            return false;
+        }
+    
+        // Adiciona a categoria ao mapa
+        categorias.put(id, nomeCategoria);
+    
+        // Adiciona a categoria ao arquivo de leitura
+        File arquivo = new File("D:\\Documentos\\UNIPAMPA\\EstruturaDeDados\\LocadoraDeVeiculos\\demo\\src\\main\\java\\com\\locadora\\Categorias.csv");
+    
+        PrintWriter writer = new PrintWriter(new FileWriter(arquivo, true));
+        writer.println(id + ";" + nomeCategoria);
+        writer.close();
+    
+        return true;
+    }
+
+    public boolean addCategoria(int id, String nome) throws IOException {
+        Map<Integer, String> categorias = getCategorias();
+        if (categorias.containsKey(id)) {
+            return false; // categoria com esse ID já existe
+        } else {
+            categorias.put(id, nome);
+            setCategorias(categorias); // atualiza o mapa de categorias na classe que gerencia os veículos
+            
+            // escreve a nova categoria no arquivo
+            FileWriter writer = new FileWriter("D:\\Documentos\\UNIPAMPA\\EstruturaDeDados\\LocadoraDeVeiculos\\demo\\src\\main\\java\\com\\locadora\\Categorias.csv", true);
+            writer.write(id + ";" + nome + "\n");
+            writer.close();
+            
+            return true;
+        }
+    }
+    
 }
+    
+
+
+
    

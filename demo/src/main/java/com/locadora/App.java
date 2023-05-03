@@ -1,12 +1,13 @@
 package com.locadora;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 /*  Autores: Kauã Henrico da Silva Souza, Guilherme de Avila de Moura, Andre Luiz Mendes Miranda
  */
 public class App 
 {
-    public static void main( String[] args )
+    public static void main( String[] args ) throws IOException
     {
        LDEVeiculos listaV = new LDEVeiculos();
        LDEClientes listaC = new LDEClientes();
@@ -62,21 +63,38 @@ public class App
             listaC.insereInicio(c2);
             listaC.existeCliente("12345678910");
 
-          locacao l1 = new locacao("IVI-1234", "12345678910",  "12/12/2020", "12/12/2022", 100);
-                listaL.cadastra(l1);
-            
-            listaL.busca("IVI-1234");
-           
-            
-
-            locacao l2 = new locacao("IVI-1235", "12345678911",  "12/12/2020", "12/12/2022", 100);
-                listaL.cadastra(l2);
-              
+         
              
+
+
+
+
+
+                try {
+                    listaV.excluiCategoria(1010);
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+
+
+
+                }
+
+
+                listaV.buscaCategoria(1010);
+
+
+                veiculo.addCategoria(0, null);
+                veiculo.addCategoria(1021, "SUV-COMP");
+
 
             }
 
-          
+
+
+            
+            
+         
 
             
 
