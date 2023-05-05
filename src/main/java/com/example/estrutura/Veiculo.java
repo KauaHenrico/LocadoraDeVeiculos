@@ -1,5 +1,6 @@
 package com.example.estrutura;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -190,5 +191,23 @@ public class Veiculo {
         }
     }
 
+    public boolean editarCategoria(int id, String nome) throws IOException {
+        Map<Integer, String> categorias = getCategorias();
+        if (categorias.containsKey(id)) {
+            categorias.put(id, nome);
+            setCategorias(categorias); // atualiza o mapa de categorias na classe que gerencia os veículos
+    
+            // atualiza o nome da categoria no arquivo
+            BufferedWriter writer = new BufferedWriter(new FileWriter("C:\\Users\\Guilherme\\IdeaProjects\\Estrutura\\src\\main\\java\\com\\example\\estrutura\\Categorias.csv"));
+            for (Map.Entry<Integer, String> entry : categorias.entrySet()) {
+                writer.write(entry.getKey() + ";" + entry.getValue() + "\n");
+            }
+            writer.close();
+    
+            return true;
+        } else {
+            return false; // categoria com esse ID não existe
+        }
+    }
 
 }
