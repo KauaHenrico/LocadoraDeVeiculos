@@ -54,10 +54,24 @@ public class MenuCategoriasController {
     }
     @FXML
     protected void onBtEditarCategoriaFinal() throws IOException{
+        try{
+            String nome = nomeCategoria.toString();
+            int id = Integer.parseInt(idCategoria.toString());
+            Veiculo v = null;
+            v.editarCategoria(id, nome);
+        }catch (Exception e){
+            Alerts.showAlert("id precisa ser inteiro","id precisa ser inteiro","ID precisa ser um número inteiro", Alert.AlertType.ERROR);
+        }
 
     }
     @FXML
     protected void onBtExcluirCategoriaFinal() throws IOException{
-
+        try{
+            int id = Integer.parseInt(idCategoria.toString());
+            LDEVeiculos lde = new LDEVeiculos();
+            lde.excluiCategoria(id);
+        }catch (Exception e){
+            Alerts.showAlert("id precisa ser inteiro","id precisa ser inteiro","ID precisa ser um número inteiro", Alert.AlertType.ERROR);
+        }
     }
 }

@@ -10,7 +10,7 @@ public class LeArquivo {
     LDEVeiculos ldeVeiculos = new LDEVeiculos();
     public void LeArquivoVeiculos(){
         try {
-            File file = new File("C:\\Users\\Guilherme\\IdeaProjects\\Estrutura\\src\\main\\java\\com\\example\\estrutura\\Veiculos.csv");
+            File file = new File("D:\\Documentos\\UNIPAMPA\\EstruturaDeDados\\LocadoraDeVeiculos\\src\\main\\java\\com\\example\\estrutura\\Categorias.csv");
             Scanner scanner = null;
             try {
                 scanner = new Scanner(file);
