@@ -183,7 +183,7 @@ public class Veiculo {
             setCategorias(categorias); // atualiza o mapa de categorias na classe que gerencia os veículos
 
             // escreve a nova categoria no arquivo
-            FileWriter writer = new FileWriter("C:\\Users\\Guilherme\\IdeaProjects\\Estrutura\\src\\main\\java\\com\\example\\estrutura\\Categorias..csv", true);
+            FileWriter writer = new FileWriter("D:\\Documentos\\UNIPAMPA\\EstruturaDeDados\\LocadoraDeVeiculos\\src\\main\\java\\com\\example\\estrutura\\Categorias.csv", true);
             writer.write(id + ";" + nome + "\n");
             writer.close();
 
@@ -198,7 +198,7 @@ public class Veiculo {
             setCategorias(categorias); // atualiza o mapa de categorias na classe que gerencia os veículos
     
             // atualiza o nome da categoria no arquivo
-            BufferedWriter writer = new BufferedWriter(new FileWriter("C:\\Users\\Guilherme\\IdeaProjects\\Estrutura\\src\\main\\java\\com\\example\\estrutura\\Categorias.csv"));
+            BufferedWriter writer = new BufferedWriter(new FileWriter("D:\\Documentos\\UNIPAMPA\\EstruturaDeDados\\LocadoraDeVeiculos\\src\\main\\java\\com\\example\\estrutura\\Categorias.csv"));
             for (Map.Entry<Integer, String> entry : categorias.entrySet()) {
                 writer.write(entry.getKey() + ";" + entry.getValue() + "\n");
             }

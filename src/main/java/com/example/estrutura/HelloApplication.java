@@ -52,7 +52,7 @@ public class HelloApplication extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException{
         try {
-            File file = new File("C:\\Users\\Guilherme\\IdeaProjects\\Estrutura\\src\\main\\java\\com\\example\\estrutura\\Veiculos.csv");
+            File file = new File("D:\\Documentos\\UNIPAMPA\\EstruturaDeDados\\LocadoraDeVeiculos\\src\\main\\java\\com\\example\\estrutura\\Veiculos.csv");
             Scanner scanner = null;
             try {
                 scanner = new Scanner(file);

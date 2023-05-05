@@ -25,7 +25,7 @@ public class MenuLocacoesController {
     private TextField placaVeiculo;
     @FXML
     protected void onBtVoltar1() throws IOException{
-        HelloApplication.changeScene(5);
+        HelloApplication.changeScene(1);
     }
     @FXML
     protected void onBtLocarVeiculo() throws IOException{
