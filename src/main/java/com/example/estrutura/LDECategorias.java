@@ -75,65 +75,53 @@ public class LDECategorias {
         }
     }
     public boolean excluiCategoria(int id) throws IOException {
-        LDEVeiculos ldeveiculos = new LDEVeiculos();
-        if (ldeveiculos.buscaCategoria(id)) {
-            // Remove a categoria da lista
-            NohCategorias aux = inicio;
-            while (aux != null) {
-                if (aux.getCategoria() instanceof Categorias) {
-                    Categorias c = (Categorias) aux.getCategoria();
-                    if (c.getId() == id ) {
-                        if (aux == inicio) {
-                            inicio = inicio.getProx();
-                            if (inicio != null) {
-                                inicio.setAnt(null);
-                            } else {
-                                fim = null;
-                            }
-                        } else if (aux == fim) {
-                            fim = fim.getAnt();
-                            fim.setProx(null);
-                        } else {
-                            aux.getAnt().setProx(aux.getProx());
-                            aux.getProx().setAnt(aux.getAnt());
-                        }
-                        break;
-                    }
-                }
-                aux = aux.getProx();
+        File arquivo = new File("D:\\Documentos\\UNIPAMPA\\EstruturaDeDados\\LocadoraDeVeiculos\\src\\main\\java\\com\\example\\estrutura\\Categorias.csv");
+        File tempFile = new File("D:\\Documentos\\UNIPAMPA\\EstruturaDeDados\\LocadoraDeVeiculos\\src\\main\\java\\com\\example\\estrutura\\temp.csv");
+    
+        BufferedReader reader = new BufferedReader(new FileReader(arquivo));
+        PrintWriter writer = new PrintWriter(new FileWriter(tempFile));
+    
+        String linha = reader.readLine(); // lê a primeira linha (cabeçalho)
+        writer.println(linha); // escreve a primeira linha no arquivo temporário
+    
+        boolean categoriaEncontrada = false;
+    
+        while ((linha = reader.readLine()) != null) {
+            String[] colunas = linha.split(";");
+            int categoriaId = Integer.parseInt(colunas[0]);
+    
+            if (categoriaId == id) {
+                categoriaEncontrada = true;
+                continue; // pula a linha com o ID correspondente, não escrevendo no arquivo temporário
             }
-
-            // Remove a categoria do arquivo de leitura
-            File arquivo = new File(
-                    "D:\\Documentos\\UNIPAMPA\\EstruturaDeDados\\LocadoraDeVeiculos\\src\\main\\java\\com\\example\\estrutura\\Categorias.csv");
-            File tempFile = new File(
-                "D:\\Documentos\\UNIPAMPA\\EstruturaDeDados\\LocadoraDeVeiculos\\src\\main\\java\\com\\example\\estrutura\\temp.csv");
-
-            BufferedReader reader = new BufferedReader(new FileReader(arquivo));
-            PrintWriter writer = new PrintWriter(new FileWriter(tempFile));
-
-            String linha = reader.readLine(); // lê a primeira linha (cabeçalho)
-            writer.println(linha); // escreve a primeira linha no arquivo temporário
-
-            while ((linha = reader.readLine()) != null) {
-                String[] colunas = linha.split(";");
-                int categoriaId = Integer.parseInt(colunas[0]);
-                if (categoriaId != id) {
-                    writer.println(linha); // escreve a linha no arquivo temporário
-                }
-            }
-
-            reader.close();
-            writer.close();
-
+    
+            writer.println(linha); // escreve a linha no arquivo temporário
+        }
+    
+        reader.close();
+        writer.close();
+    
+        if (categoriaEncontrada) {
             // Substitui o arquivo original pelo arquivo temporário
             arquivo.delete();
             tempFile.renameTo(arquivo);
-
-            return true; // retorna true se o elemento foi removido
+    
+            return true; // retorna true se a categoria foi excluída
         }
-
-        return false;
+    
+        return false; // retorna false se a categoria não foi encontrada
     }
+    
+
+
+    public boolean buscaCategoria(int id) throws IOException {
+        Map<Integer, String> categorias = categoria.getCategorias();
+        if (categorias.containsKey(id)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 
 }

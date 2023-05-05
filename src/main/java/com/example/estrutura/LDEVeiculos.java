@@ -182,7 +182,7 @@ public class LDEVeiculos implements Lista{
             aux = aux.getProx();
         }
         if (!encontrado) {
-            System.out.println("Carro não encontrado");
+            System.out.println("Categoria não encontrado");
         }
         return encontrado;
     }

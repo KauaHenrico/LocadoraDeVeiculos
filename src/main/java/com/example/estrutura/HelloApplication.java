@@ -49,6 +49,7 @@ public class HelloApplication extends Application {
     public static Scene editarCategoria;
     public static Scene locarVeiculo;
     public static Scene devolverVeiculo;
+    public static Scene excluirCategoria;
     @Override
     public void start(Stage primaryStage) throws IOException{
         try {
@@ -116,6 +117,9 @@ public class HelloApplication extends Application {
         locarVeiculo = new Scene(FXMLLocarVeiculo);
         Parent FXMLDevolverVeiculo = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("DevolverVeiculo.fxml")));
         devolverVeiculo = new Scene(FXMLDevolverVeiculo);
+        Parent FXMLExcluirCategoria = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("ExcluirCategoria.fxml")));
+        excluirCategoria = new Scene(FXMLExcluirCategoria);
+       
 
         stage.setScene(helloView);
         stage.show();
@@ -187,6 +191,12 @@ public class HelloApplication extends Application {
                 stage.setScene(devolverVeiculo);
                 stage.show();
             break;
+            case 16:
+                stage.setScene(excluirCategoria);
+                stage.show();
+            break;
+            
+          
         }
 
     }

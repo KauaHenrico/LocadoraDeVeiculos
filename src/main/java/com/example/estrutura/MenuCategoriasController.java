@@ -30,6 +30,7 @@ public class MenuCategoriasController {
 
     @FXML
     protected void onBtExcluirCategoria() throws IOException {
+        HelloApplication.changeScene(16);
     }
 
     @FXML
@@ -48,6 +49,12 @@ public class MenuCategoriasController {
     protected void onBtVoltar1() throws IOException {
         HelloApplication.changeScene(4);
     }
+
+    @FXML
+    protected void excluiCategoria() throws IOException{
+            HelloApplication.changeScene(16);
+    }
+
     @FXML
     protected void onBtIncluirCategoriaFinal() throws IOException {
         try {
@@ -61,6 +68,9 @@ public class MenuCategoriasController {
        
             LDECategorias ldec = new LDECategorias();
             ldec.addCategoria(id, nome);
+            Alerts.showAlert("Categoria ","Categoria criada com sucesso com sucesso","Clique para voltar" , Alert.AlertType.INFORMATION);
+            limpaCampos();
+            HelloApplication.changeScene(1);
           
         } catch (Exception e) {
             e.printStackTrace();
@@ -87,13 +97,35 @@ public class MenuCategoriasController {
     @FXML
     protected void onBtExcluirCategoriaFinal() throws IOException {
         try {
-            int id = Integer.parseInt(idCategoria.toString());
-            String nome = nomeCategoria.toString();
+            String idStr = idCategoria.getText();
+            if (!idStr.matches("\\d+")) {
+                Alerts.showAlert("id precisa ser inteiro", "id precisa ser inteiro", "ID precisa ser um número inteiro", Alert.AlertType.ERROR);
+                return;
+            }
+            int id = Integer.parseInt(idStr);
+       
             LDECategorias ldec = new LDECategorias();
             ldec.excluiCategoria(id);
+            Alerts.showAlert("Categoria ","Categoria excluida com sucesso","Clique para voltar" , Alert.AlertType.INFORMATION);
+            limpaCamposExcluir();
+            HelloApplication.changeScene(1);
         } catch (Exception e) {
-            Alerts.showAlert("id precisa ser inteiro", "id precisa ser inteiro", "ID precisa ser um número inteiro",
-                    Alert.AlertType.ERROR);
+           
+          e.printStackTrace();
         }
     }
+
+    protected void limpaCampos() throws IOException{
+        idCategoria.setText("");
+        nomeCategoria.setText("");
+        // telefoneCliente.setText("");
+        // cnhCliente.setText("");
+    }
+    protected void limpaCamposExcluir() throws IOException{
+        idCategoria.setText("");
+       
+        // telefoneCliente.setText("");
+        // cnhCliente.setText("");
+    }
+
 }
