@@ -197,66 +197,7 @@ public class LDEVeiculos implements Lista{
         }
         return false;
     }
-    public boolean excluiCategoria(int id) throws IOException {
-        if (buscaCategoria(id)) {
-            // Remove a categoria da lista
-            NohVeiculos aux = inicio;
-            while (aux != null) {
-                if (aux.getVeiculo() instanceof Veiculo) {
-                    Veiculo a = (Veiculo) aux.getVeiculo();
-                    if (a.getCategoria() == id) {
-                        if (aux == inicio) {
-                            inicio = inicio.getProx();
-                            if (inicio != null) {
-                                inicio.setAnt(null);
-                            } else {
-                                fim = null;
-                            }
-                        } else if (aux == fim) {
-                            fim = fim.getAnt();
-                            fim.setProx(null);
-                        } else {
-                            aux.getAnt().setProx(aux.getProx());
-                            aux.getProx().setAnt(aux.getAnt());
-                        }
-                        break;
-                    }
-                }
-                aux = aux.getProx();
-            }
-
-            // Remove a categoria do arquivo de leitura
-            File arquivo = new File(
-                    "C:\\Users\\Guilherme\\IdeaProjects\\Estrutura\\src\\main\\java\\com\\example\\estrutura\\Categorias..csv");
-            File tempFile = new File(
-                    "C:\\Users\\Guilherme\\IdeaProjects\\Estrutura\\src\\main\\java\\com\\example\\estrutura\\temp.csv");
-
-            BufferedReader reader = new BufferedReader(new FileReader(arquivo));
-            PrintWriter writer = new PrintWriter(new FileWriter(tempFile));
-
-            String linha = reader.readLine(); // lê a primeira linha (cabeçalho)
-            writer.println(linha); // escreve a primeira linha no arquivo temporário
-
-            while ((linha = reader.readLine()) != null) {
-                String[] colunas = linha.split(";");
-                int categoriaId = Integer.parseInt(colunas[0]);
-                if (categoriaId != id) {
-                    writer.println(linha); // escreve a linha no arquivo temporário
-                }
-            }
-
-            reader.close();
-            writer.close();
-
-            // Substitui o arquivo original pelo arquivo temporário
-            arquivo.delete();
-            tempFile.renameTo(arquivo);
-
-            return true; // retorna true se o elemento foi removido
-        }
-
-        return false;
-    }
+    
     public Veiculo getVeiculo(String placa) {
         NohVeiculos aux = inicio;
         while (aux != null) {

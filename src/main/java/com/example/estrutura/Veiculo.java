@@ -71,7 +71,7 @@ public class Veiculo {
         }
 
         try {
-            File file = new File("C:\\Users\\Guilherme\\IdeaProjects\\Estrutura\\src\\main\\java\\com\\example\\estrutura\\Categorias..csv");
+            File file = new File("D:\\Documentos\\UNIPAMPA\\EstruturaDeDados\\LocadoraDeVeiculos\\src\\main\\java\\com\\example\\estrutura\\Categorias.csv");
             Scanner scanner = new Scanner(file);
 
             // Ignora a primeira linha, que contém apenas os nomes das colunas
@@ -174,40 +174,6 @@ public class Veiculo {
                 ", idCategoria=" + idCategoria +
                 '}';
     }
-    public boolean addCategoria(int id, String nome) throws IOException {
-        Map<Integer, String> categorias = getCategorias();
-        if (categorias.containsKey(id)) {
-            return false; // categoria com esse ID já existe
-        } else {
-            categorias.put(id, nome);
-            setCategorias(categorias); // atualiza o mapa de categorias na classe que gerencia os veículos
-
-            // escreve a nova categoria no arquivo
-            FileWriter writer = new FileWriter("D:\\Documentos\\UNIPAMPA\\EstruturaDeDados\\LocadoraDeVeiculos\\src\\main\\java\\com\\example\\estrutura\\Categorias.csv", true);
-            writer.write(id + ";" + nome + "\n");
-            writer.close();
-
-            return true;
-        }
-    }
-
-    public boolean editarCategoria(int id, String nome) throws IOException {
-        Map<Integer, String> categorias = getCategorias();
-        if (categorias.containsKey(id)) {
-            categorias.put(id, nome);
-            setCategorias(categorias); // atualiza o mapa de categorias na classe que gerencia os veículos
-    
-            // atualiza o nome da categoria no arquivo
-            BufferedWriter writer = new BufferedWriter(new FileWriter("D:\\Documentos\\UNIPAMPA\\EstruturaDeDados\\LocadoraDeVeiculos\\src\\main\\java\\com\\example\\estrutura\\Categorias.csv"));
-            for (Map.Entry<Integer, String> entry : categorias.entrySet()) {
-                writer.write(entry.getKey() + ";" + entry.getValue() + "\n");
-            }
-            writer.close();
-    
-            return true;
-        } else {
-            return false; // categoria com esse ID não existe
-        }
-    }
+  
 
 }

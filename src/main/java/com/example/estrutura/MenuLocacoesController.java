@@ -37,7 +37,7 @@ public class MenuLocacoesController {
     }
     @FXML
     protected void onBtListarLocacoes() throws IOException{
-
+        
     }
 
     @FXML
