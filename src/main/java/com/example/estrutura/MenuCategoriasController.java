@@ -17,6 +17,8 @@ public class MenuCategoriasController {
     private TextField nomeCategoria;
     @FXML
     private TextField idCategoria;
+    @FXML
+    private TextField nomeCategoriaAux;
 
     @FXML
     protected void onBtIncluirCategoria() throws IOException {
@@ -51,27 +53,30 @@ public class MenuCategoriasController {
     }
 
     @FXML
-    protected void excluiCategoria() throws IOException{
-            HelloApplication.changeScene(16);
+    protected void excluiCategoria() throws IOException {
+        HelloApplication.changeScene(16);
     }
 
     @FXML
     protected void onBtIncluirCategoriaFinal() throws IOException {
         try {
+
             String nome = nomeCategoria.getText();
             String idStr = idCategoria.getText();
             if (!idStr.matches("\\d+")) {
-                Alerts.showAlert("id precisa ser inteiro", "id precisa ser inteiro", "ID precisa ser um número inteiro", Alert.AlertType.ERROR);
+                Alerts.showAlert("id precisa ser inteiro", "id precisa ser inteiro", "ID precisa ser um número inteiro",
+                        Alert.AlertType.ERROR);
                 return;
             }
             int id = Integer.parseInt(idStr);
-       
+
             LDECategorias ldec = new LDECategorias();
             ldec.addCategoria(id, nome);
-            Alerts.showAlert("Categoria ","Categoria criada com sucesso com sucesso","Clique para voltar" , Alert.AlertType.INFORMATION);
+            Alerts.showAlert("Categoria ", "Categoria criada com sucesso com sucesso", "Clique para voltar",
+                    Alert.AlertType.INFORMATION);
             limpaCampos();
             HelloApplication.changeScene(1);
-          
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -80,16 +85,21 @@ public class MenuCategoriasController {
     @FXML
     protected void onBtEditarCategoriaFinal() throws IOException {
         try {
-            String nome = nomeCategoria.toString();
-            int id = Integer.parseInt(idCategoria.toString());
             LDECategorias ldec = new LDECategorias();
-            ldec.addCategoria(id, nome);
+            String nomeAntigo = nomeCategoriaAux.getText();
+            if (ldec.buscaCategoriaNome(nomeAntigo) == true) {
+                String nome = nomeCategoria.toString();
+                int id = Integer.parseInt(idCategoria.toString());
+                ldec.addCategoria(id, nome);
+            }
+
         } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("id precisa ser inteiro");
             alert.setHeaderText("id precisa ser inteiro");
             alert.setContentText("ID precisa ser um número inteiro");
             alert.showAndWait();
+            e.printStackTrace();
         }
 
     }
@@ -99,31 +109,34 @@ public class MenuCategoriasController {
         try {
             String idStr = idCategoria.getText();
             if (!idStr.matches("\\d+")) {
-                Alerts.showAlert("id precisa ser inteiro", "id precisa ser inteiro", "ID precisa ser um número inteiro", Alert.AlertType.ERROR);
+                Alerts.showAlert("id precisa ser inteiro", "id precisa ser inteiro", "ID precisa ser um número inteiro",
+                        Alert.AlertType.ERROR);
                 return;
             }
             int id = Integer.parseInt(idStr);
-       
+
             LDECategorias ldec = new LDECategorias();
             ldec.excluiCategoria(id);
-            Alerts.showAlert("Categoria ","Categoria excluida com sucesso","Clique para voltar" , Alert.AlertType.INFORMATION);
+            Alerts.showAlert("Categoria ", "Categoria excluida com sucesso", "Clique para voltar",
+                    Alert.AlertType.INFORMATION);
             limpaCamposExcluir();
             HelloApplication.changeScene(1);
         } catch (Exception e) {
-           
-          e.printStackTrace();
+
+            e.printStackTrace();
         }
     }
 
-    protected void limpaCampos() throws IOException{
+    protected void limpaCampos() throws IOException {
         idCategoria.setText("");
         nomeCategoria.setText("");
         // telefoneCliente.setText("");
         // cnhCliente.setText("");
     }
-    protected void limpaCamposExcluir() throws IOException{
+
+    protected void limpaCamposExcluir() throws IOException {
         idCategoria.setText("");
-       
+
         // telefoneCliente.setText("");
         // cnhCliente.setText("");
     }

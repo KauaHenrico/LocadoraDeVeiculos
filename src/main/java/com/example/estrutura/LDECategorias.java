@@ -83,9 +83,16 @@ public class LDECategorias {
     
         String linha = reader.readLine(); // lê a primeira linha (cabeçalho)
         writer.println(linha); // escreve a primeira linha no arquivo temporário
+        LDEVeiculos listaV = new LDEVeiculos();
+
+        if(listaV.buscaCategoria(id) == true){
+            writer.close();
+            reader.close();
+            throw new IOException("Não é possível excluir a categoria, pois existem veículos cadastrados nela.");
+        }
     
         boolean categoriaEncontrada = false;
-    
+        
         while ((linha = reader.readLine()) != null) {
             String[] colunas = linha.split(";");
             int categoriaId = Integer.parseInt(colunas[0]);
@@ -122,6 +129,16 @@ public class LDECategorias {
             return false;
         }
     }
+
+    public boolean buscaCategoriaNome(String nome) throws IOException {
+        Map<Integer, String> categorias = categoria.getCategorias();
+        if (categorias.containsValue(nome)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 
 
 }
