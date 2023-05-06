@@ -91,6 +91,7 @@ public class MenuCategoriasController {
                 String nome = nomeCategoria.toString();
                 int id = Integer.parseInt(idCategoria.toString());
                 ldec.addCategoria(id, nome);
+                limpaCamposEditar();
             }
 
         } catch (Exception e) {
@@ -130,15 +131,17 @@ public class MenuCategoriasController {
     protected void limpaCampos() throws IOException {
         idCategoria.setText("");
         nomeCategoria.setText("");
-        // telefoneCliente.setText("");
-        // cnhCliente.setText("");
     }
 
     protected void limpaCamposExcluir() throws IOException {
         idCategoria.setText("");
+    }
 
-        // telefoneCliente.setText("");
-        // cnhCliente.setText("");
+    protected void limpaCamposEditar() throws IOException {
+        idCategoria.setText("");
+        nomeCategoria.setText("");
+       nomeCategoriaAux.setText("");
+       
     }
 
 }
